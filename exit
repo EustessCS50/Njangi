@@ -1,0 +1,147 @@
+[33mcommit 1b32ab4ba64ac8f725d9dced625f79a2060582f6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Accountants <accountants@etiendem.onmicrosoft.com>
+Date:   Tue Dec 30 11:15:39 2025 +0100
+
+    First commit
+
+[1mdiff --git a/.github/copilot-instructions.md b/.github/copilot-instructions.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..bf11e1f[m
+[1m--- /dev/null[m
+[1m+++ b/.github/copilot-instructions.md[m
+[36m@@ -0,0 +1,55 @@[m
+[32m+[m[32m# Copilot / AI agent instructions — Njangi (Django)[m
+[32m+[m
+[32m+[m[32mThis file gives concise, actionable guidance for an AI coding assistant working on this repository.[m
+[32m+[m
+[32m+[m[32mProject summary[m
+[32m+[m[32m- Minimal Django 6.0 project generated with `django-admin startproject`.[m
+[32m+[m[32m- Main app: `savingsapp` (directory: `Njangi/savingsapp`).[m
+[32m+[m[32m- Settings: [Njangi/settings.py](Njangi/Njangi/settings.py) (project-level configuration).[m
+[32m+[m[32m- Database: SQLite file at `Njangi/db.sqlite3` (configured in settings).[m
+[32m+[m
+[32m+[m[32mEssential workflows (copyable)[m
+[32m+[m[32m- Create virtualenv (Windows PowerShell):[m
+[32m+[m[32m  ```powershell[m
+[32m+[m[32m  python -m venv venv[m
+[32m+[m[32m  .\venv\Scripts\Activate.ps1[m
+[32m+[m[32m  pip install -r requirements.txt[m
+[32m+[m[32m  ```[m
+[32m+[m[32m- From repository root the project `manage.py` lives under `Njangi/manage.py`. Common commands:[m
+[32m+[m[32m  - Run server: `python Njangi/manage.py runserver`[m
+[32m+[m[32m  - Apply migrations: `python Njangi/manage.py migrate`[m
+[32m+[m[32m  - Make migrations for `savingsapp`: `python Njangi/manage.py makemigrations savingsapp`[m
+[32m+[m[32m  - Run tests: `python Njangi/manage.py test`[m
+[32m+[m[32m  - Open shell: `python Njangi/manage.py shell`[m
+[32m+[m
+[32m+[m[32mProject-specific patterns and notes[m
+[32m+[m[32m- App registration: add new apps to `INSTALLED_APPS` in [Njangi/settings.py](Njangi/Njangi/settings.py). The app config class is `savingsapp.apps.SavingsappConfig`.[m
+[32m+[m[32m- URL routing: top-level `urlpatterns` currently only exposes the admin in [Njangi/urls.py](Njangi/Njangi/urls.py). Add `include('savingsapp.urls')` to expose app routes and create `savingsapp/urls.py` when adding views.[m
+[32m+[m[32m- Migrations: `savingsapp/migrations/` contains migration modules; keep migrations in-source with the repo (SQLite used in dev).[m
+[32m+[m[32m- Templates: none configured in `TEMPLATES['DIRS']` — prefer placing templates inside `savingsapp/templates/<appname>/` and enable if needed.[m
+[32m+[m
+[32m+[m[32mDependencies & integration points[m
+[32m+[m[32m- See `requirements.txt` (Django==6.0, Pillow, tzdata, etc.). No external APIs or services are present in the repo.[m
+[32m+[m[32m- Persistence: using Django ORM with SQLite (`DATABASES` in settings). No additional DB adapters configured.[m
+[32m+[m
+[32m+[m[32mCodebase conventions to follow (discoverable)[m
+[32m+[m[32m- Follow standard Django layout already present (apps under `Njangi/`).[m
+[32m+[m[32m- Keep view logic in `savingsapp/views.py`, models in `savingsapp/models.py`, admin registrations in `savingsapp/admin.py`.[m
+[32m+[m[32m- Use `savingsapp.apps.SavingsappConfig` when referencing the app in `INSTALLED_APPS` to avoid name collisions.[m
+[32m+[m
+[32m+[m[32mSecurity / operational notes (observable)[m
+[32m+[m[32m- `SECRET_KEY` and `DEBUG = True` are checked into settings. Treat changes as local/dev-only; do not publish real secrets.[m
+[32m+[m
+[32m+[m[32mExamples (common edits an AI may perform)[m
+[32m+[m[32m- Add a model: edit `savingsapp/models.py`, then run `python Njangi/manage.py makemigrations savingsapp` and `migrate`.[m
+[32m+[m[32m- Add app URLs: create `savingsapp/urls.py`, then update [Njangi/urls.py](Njangi/Njangi/urls.py) with `path('', include('savingsapp.urls'))`.[m
+[32m+[m
+[32m+[m[32mIf you are unsure[m
+[32m+[m[32m- Run the commands above in the repo root; `manage.py` is in the `Njangi/` subdirectory.[m
+[32m+[m[32m- If behavior differs locally, inspect `Njangi/Njangi/settings.py` for environment-specific overrides.[m
+[32m+[m
+[32m+[m[32mWhen merging or changing this file[m
+[32m+[m[32m- Preserve the short commands and the explicit paths (they are intentionally relative to repository root).[m
+[32m+[m
+[32m+[m[32mFeedback[m
+[32m+[m[32m- After updates, ask the human for missing conventions or CI/test workflows that aren't captured here.[m
+[1mdiff --git a/Njangi/Njangi/__init__.py b/Njangi/Njangi/__init__.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/Njangi/Njangi/__pycache__/__init__.cpython-314.pyc b/Njangi/Njangi/__pycache__/__init__.cpython-314.pyc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e235aa1[m
+Binary files /dev/null and b/Njangi/Njangi/__pycache__/__init__.cpython-314.pyc differ
+[1mdiff --git a/Njangi/Njangi/__pycache__/settings.cpython-314.pyc b/Njangi/Njangi/__pycache__/settings.cpython-314.pyc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1ad709a[m
+Binary files /dev/null and b/Njangi/Njangi/__pycache__/settings.cpython-314.pyc differ
+[1mdiff --git a/Njangi/Njangi/__pycache__/urls.cpython-314.pyc b/Njangi/Njangi/__pycache__/urls.cpython-314.pyc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..df173ba[m
+Binary files /dev/null and b/Njangi/Njangi/__pycache__/urls.cpython-314.pyc differ
+[1mdiff --git a/Njangi/Njangi/__pycache__/wsgi.cpython-314.pyc b/Njangi/Njangi/__pycache__/wsgi.cpython-314.pyc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..203483d[m
+Binary files /dev/null and b/Njangi/Njangi/__pycache__/wsgi.cpython-314.pyc differ
+[1mdiff --git a/Njangi/Njangi/asgi.py b/Njangi/Njangi/asgi.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a61de1f[m
+[1m--- /dev/null[m
+[1m+++ b/Njangi/Njangi/asgi.py[m
+[36m@@ -0,0 +1,16 @@[m
+[32m+[m[32m"""[m
+[32m+[m[32mASGI config for Njangi project.[m
+[32m+[m
+[32m+[m[32mIt exposes the ASGI callable as a module-level variable named ``application``.[m
+[32m+[m
+[32m+[m[32mFor more information on this file, see[m
+[32m+[m[32mhttps://docs.djangoproject.com/en/6.0/howto/deployment/asgi/[m
+[32m+[m[32m"""[m
+[32m+[m
+[32m+[m[32mimport os[m
+[32m+[m
+[32m+[m[32mfrom django.core.asgi import get_asgi_application[m
+[32m+[m
+[32m+[m[32mos.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Njangi.settings')[m
+[32m+[m
+[32m+[m[32mapplication = get_asgi_application()[m
+[1mdiff --git a/Njangi/Njangi/settings.py b/Njangi/Njangi/settings.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..8fb7870[m
+[1m--- /dev/null[m
+[1m+++ b/Njangi/Njangi/settings.py[m
+[36m@@ -0,0 +1,140 @@[m
+[32m+[m[32m"""[m
+[32m+[m[32mDjango settings for Njangi project.[m
+[32m+[m
+[32m+[m[32mGenerated by 'django-admin startproject' using Django 6.0.[m
+[32m+[m
+[32m+[m[32mFor more information on this file, see[m
+[32m+[m[32mhttps://docs.djangoproject.com/en/6.0/topics/settings/[m
+[32m+[m
+[32m+[m[32mFor the full list of settings and their values, see[m
+[32m+[m[32mhttps://docs.djangoproject.com/en/6.0/ref/settings/[m
+[32m+[m[32m"""[m
+[32m+[m
+[32m+[m[32mfrom pathlib import Path[m
+[32m+[m
+[32m+[m[32m# Build paths inside the project like this: BASE_DIR / 'subdir'.[m
+[32m+[m[32mBASE_DIR = Path(__file__).resolve().parent.parent[m
+[32m+[m
+[32m+[m
+[32m+[m[32m# Quick-start development settings - unsuitable for production[m
+[32m+[m[32m# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/[m
+[32m+[m
+[32m+[m[32m# SECURITY WARNING: keep the secret key used in production secret![m
+[32m+[m[32mSECRET_KEY = 'django-insecure-le&2i0^=5m-5m06z**a0c%w32v$^mxa(@r-5*jyzan%qeg$x1!'[m
+[32m+[m
+[32m+[m[32m# SECURITY WARNING: don't run with debug turned on in production![m
+[32m+[m[32mDEBUG = True[m
+[32m+[m
+[32m+[m[32mALLOWED_HOSTS = [][m
+[32m+[m
+[32m+[m
+[32m+[m[32m# Application definition[m
+[32m+[m
+[32m+[m[32mINSTALLED_APPS = [[m
