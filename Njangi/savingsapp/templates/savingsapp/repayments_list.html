@@ -1,0 +1,37 @@
+{% extends 'savingsapp/base.html' %}
+{% block content %}
+  <h2>Repayments</h2>
+  <div style="margin-bottom:12px">
+    <a class="btn" href="{% url 'savingsapp:repayment_create' %}">Add repayment</a>
+    <a class="btn" href="{% url 'savingsapp:repayments_export_xlsx' %}">Export XLSX</a>
+  </div>
+  <form method="get" style="margin-bottom:12px">
+    <input name="q" placeholder="Search member name" value="{{ q }}">
+    <button class="btn" type="submit">Search</button>
+  </form>
+  <table class="table">
+    <thead><tr><th>Date</th><th>Loan</th><th>Member</th><th>Amount</th><th>Note</th></tr></thead>
+    <tbody>
+    {% for r in repayments %}
+      <tr>
+        <td>{{ r.date }}</td>
+        <td>{{ r.loan.id }}</td>
+        <td>{{ r.loan.membership.member }}</td>
+        <td>{{ r.amount }}</td>
+        <td>{{ r.note }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No repayments yet.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination">
+    {% if repayments.has_previous %}
+      <a href="?page={{ repayments.previous_page_number }}&q={{ q }}">Previous</a>
+    {% endif %}
+    <span>Page {{ repayments.number }} of {{ repayments.paginator.num_pages }}</span>
+    {% if repayments.has_next %}
+      <a href="?page={{ repayments.next_page_number }}&q={{ q }}">Next</a>
+    {% endif %}
+  </div>
+{% endblock %}

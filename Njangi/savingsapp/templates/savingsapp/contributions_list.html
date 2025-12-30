@@ -1,0 +1,36 @@
+{% extends 'savingsapp/base.html' %}
+{% block content %}
+  <h2>Contributions</h2>
+  <div style="margin-bottom:12px">
+    <a class="btn" href="{% url 'savingsapp:contribution_create' %}">Add contribution</a>
+  </div>
+  <form method="get" style="margin-bottom:12px">
+    <input name="q" placeholder="Search member name" value="{{ q }}">
+    <button class="btn" type="submit">Search</button>
+  </form>
+  <table class="table">
+    <thead><tr><th>Date</th><th>Member</th><th>Meeting</th><th>Amount</th><th>Note</th></tr></thead>
+    <tbody>
+    {% for c in contributions %}
+      <tr>
+        <td>{{ c.date }}</td>
+        <td>{{ c.membership.member }}</td>
+        <td>{{ c.membership.meeting }}</td>
+        <td>{{ c.amount }}</td>
+        <td>{{ c.note }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No contributions yet.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination">
+    {% if contributions.has_previous %}
+      <a href="?page={{ contributions.previous_page_number }}&q={{ q }}">Previous</a>
+    {% endif %}
+    <span>Page {{ contributions.number }} of {{ contributions.paginator.num_pages }}</span>
+    {% if contributions.has_next %}
+      <a href="?page={{ contributions.next_page_number }}&q={{ q }}">Next</a>
+    {% endif %}
+  </div>
+{% endblock %}

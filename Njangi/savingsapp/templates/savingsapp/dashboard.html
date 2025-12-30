@@ -1,0 +1,26 @@
+{% extends 'savingsapp/base.html' %}
+{% block content %}
+  <h2>Dashboard</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Total members</h3>
+      <p class="big">{{ total_members }}</p>
+    </div>
+    <div class="card">
+      <h3>Total contributions</h3>
+      <p class="big">{{ total_contributions }}</p>
+    </div>
+    <div class="card">
+      <h3>Total loans</h3>
+      <p class="big">{{ total_loans }}</p>
+    </div>
+    <div class="card">
+      <h3>Outstanding loans</h3>
+      <p class="big">{{ outstanding_loans }}</p>
+    </div>
+    <div class="card">
+      <h3>Bank balance</h3>
+      <p class="big">{{ bank_balance }}</p>
+    </div>
+  </div>
+{% endblock %}

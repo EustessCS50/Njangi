@@ -1,0 +1,10 @@
+{% extends 'savingsapp/base.html' %}
+{% block content %}
+  <h2>Import Members (CSV)</h2>
+  <p>Upload a CSV with columns: first_name,last_name,phone,email</p>
+  <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    <input type="file" name="csvfile" accept=".csv" required>
+    <button class="btn" type="submit">Upload</button>
+    <a class="btn" href="{% url 'savingsapp:members_list' %}">Cancel</a>
+  </form>
+{% endblock %}

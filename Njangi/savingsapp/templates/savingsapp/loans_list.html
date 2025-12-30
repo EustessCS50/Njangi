@@ -1,0 +1,37 @@
+{% extends 'savingsapp/base.html' %}
+{% block content %}
+  <h2>Loans</h2>
+  <div style="margin-bottom:12px">
+    <a class="btn" href="{% url 'savingsapp:loan_create' %}">Add loan</a>
+  </div>
+  <form method="get" style="margin-bottom:12px">
+    <input name="q" placeholder="Search member name" value="{{ q }}">
+    <button class="btn" type="submit">Search</button>
+  </form>
+  <table class="table">
+    <thead><tr><th>Created</th><th>Member</th><th>Meeting</th><th>Principal</th><th>Rate</th><th>Status</th></tr></thead>
+    <tbody>
+    {% for l in loans %}
+      <tr>
+        <td>{{ l.created_at }}</td>
+        <td>{{ l.membership.member }}</td>
+        <td>{{ l.membership.meeting }}</td>
+        <td>{{ l.principal }}</td>
+        <td>{{ l.interest_rate }}</td>
+        <td>{{ l.status }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="6">No loans yet.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination">
+    {% if loans.has_previous %}
+      <a href="?page={{ loans.previous_page_number }}&q={{ q }}">Previous</a>
+    {% endif %}
+    <span>Page {{ loans.number }} of {{ loans.paginator.num_pages }}</span>
+    {% if loans.has_next %}
+      <a href="?page={{ loans.next_page_number }}&q={{ q }}">Next</a>
+    {% endif %}
+  </div>
+{% endblock %}
