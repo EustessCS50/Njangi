@@ -1,0 +1,9 @@
+{% extends 'savingsapp/base.html' %}
+{% block content %}
+  <h2>{% if repayment %}Edit{% else %}Add{% endif %} Repayment</h2>
+  <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn" type="submit">Save</button>
+    <a class="btn" href="{% url 'savingsapp:repayments_list' %}">Cancel</a>
+  </form>
+{% endblock %}

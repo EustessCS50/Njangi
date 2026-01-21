@@ -1,0 +1,42 @@
+{% extends 'savingsapp/base.html' %}
+{% block content %}
+<div class="hero hero-gradient">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <h1>Manage your Njangi — smarter, simpler</h1>
+      <p class="lead">A focused SaaS for savings groups. Track meetings, contributions, loans and bank activity with clarity.</p>
+      <p class="cta">
+        <a class="btn btn-primary btn-large" href="{% url 'savingsapp:signup' %}">Get started</a>
+        <a class="btn btn-outline btn-large" href="{% url 'login' %}">Sign in</a>
+      </p>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="320" height="220" rx="14" fill="url(#g)" />
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0f1724" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#093252" stop-opacity="0.95"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<section class="features grid-3">
+  <div class="feature card">
+    <h3>Multi-group SaaS</h3>
+    <p>Treat each Njangi as a separate account — membership and finances are scoped per group for clean tenant separation.</p>
+  </div>
+  <div class="feature card">
+    <h3>Delightfully Minimal</h3>
+    <p>Focus on the numbers that matter with a clear, responsive dashboard.</p>
+  </div>
+  <div class="feature card">
+    <h3>API First</h3>
+    <p>Automate reporting and integrations via the REST API. See <a href="/api/help/">API Help</a>.</p>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'savingsapp/base.html' %}
+{% block content %}
+  <h2>Members</h2>
+  <div style="margin-bottom:12px">
+    <a class="btn" href="{% url 'savingsapp:member_create' %}">Add member</a>
+    <a class="btn" href="{% url 'savingsapp:members_import_csv' %}">Import CSV</a>
+    <a class="btn" href="{% url 'savingsapp:group_export_xlsx' %}">Export XLSX</a>
+    <a class="btn" href="{% url 'savingsapp:group_export_pdf' %}">Export PDF</a>
+  </div>
+  <form method="get" style="margin-bottom:12px">
+    <input name="q" placeholder="Search name, phone or email" value="{{ q }}">
+    <button class="btn" type="submit">Search</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr><th>Name</th><th>Phone</th><th>Email</th><th>Joined</th></tr>
+    </thead>
+    <tbody>
+      {% for m in members %}
+      <tr>
+        <td><a href="{% url 'savingsapp:member_detail' m.pk %}">{{ m.first_name }} {{ m.last_name }}</a></td>
+        <td>{{ m.phone }}</td>
+        <td>{{ m.email }}</td>
+        <td>{{ m.joined_at }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4">No members yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination">
+    {% if members.has_previous %}
+      <a href="?page={{ members.previous_page_number }}&q={{ q }}">Previous</a>
+    {% endif %}
+    <span>Page {{ members.number }} of {{ members.paginator.num_pages }}</span>
+    {% if members.has_next %}
+      <a href="?page={{ members.next_page_number }}&q={{ q }}">Next</a>
+    {% endif %}
+  </div>
+{% endblock %}

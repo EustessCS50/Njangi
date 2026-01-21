@@ -1,0 +1,54 @@
+{% extends 'savingsapp/base.html' %}
+{% block content %}
+  <h2>Member: {{ member.first_name }} {{ member.last_name }}</h2>
+  <p>Phone: {{ member.phone }} — Email: {{ member.email }}</p>
+  <p>
+    <a class="btn" href="{% url 'savingsapp:member_statement_pdf' member.pk %}">Download statement (PDF)</a>
+    <a class="btn" href="{% url 'savingsapp:member_edit' member.pk %}">Edit</a>
+  </p>
+
+  <h3>Memberships</h3>
+  <ul>
+    {% for ms in memberships %}
+      <li>{{ ms.meeting }} — Monthly due: {{ ms.monthly_due }} — Active: {{ ms.is_active }}</li>
+    {% empty %}
+      <li>No memberships</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Recent Contributions</h3>
+  <table class="table">
+    <thead><tr><th>Date</th><th>Amount</th><th>Meeting</th><th>Note</th></tr></thead>
+    <tbody>
+    {% for c in contributions %}
+      <tr>
+        <td>{{ c.date }}</td>
+        <td>{{ c.amount }}</td>
+        <td>{{ c.membership.meeting }}</td>
+        <td>{{ c.note }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">No contributions</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Loans</h3>
+  <table class="table">
+    <thead><tr><th>Created</th><th>Principal</th><th>Rate</th><th>Status</th><th>Due</th></tr></thead>
+    <tbody>
+    {% for l in loans %}
+      <tr>
+        <td>{{ l.created_at }}</td>
+        <td>{{ l.principal }}</td>
+        <td>{{ l.interest_rate }}</td>
+        <td>{{ l.status }}</td>
+        <td>{{ l.due_date }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No loans</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

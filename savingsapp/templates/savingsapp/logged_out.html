@@ -1,0 +1,12 @@
+{% extends 'savingsapp/base.html' %}
+
+{% block content %}
+  <div class="auth-container">
+    <h2>Signed out</h2>
+    <p>You have been signed out successfully.</p>
+    <p>
+      <a class="btn btn-primary" href="/">Return to home</a>
+      <a class="btn btn-outline" href="{% url 'login' %}" style="background:var(--navy);border:1px solid rgba(255,255,255,0.14);color:var(--white)">Sign in again</a>
+    </p>
+  </div>
+{% endblock %}
